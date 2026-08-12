@@ -525,40 +525,69 @@
     progFill.style.width = '100%';
     clearOptions();
 
-    /* Build JSON payload */
-    var payload = {
-      '_subject': 'Bespoke training enquiry — ' + (answers['Name'] || 'website visitor'),
-      '_replyto': answers['Email'] || ''
-    };
-    Object.keys(answers).forEach(function (key) {
-      payload[key] = answers[key];
-    });
-
     /* Show sending state */
     showTyping(function () {
       addBotMsg("Sending your details to Carolyn…");
     }, 600);
 
-    fetch(FORMSPREE, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify(payload)
-    })
-    .then(function (r) {
-      if (!r.ok) throw new Error('HTTP ' + r.status);
-      return r.json();
-    })
-    .then(function (data) {
-      if (data.ok) {
-        showSuccess();
-      } else {
-        showError();
-      }
-    })
-    .catch(function () { showError(); });
+    /* Submit via hidden iframe — same mechanism as the HTML form on the page,
+       so no CORS or fetch issues. The iframe load event fires when Formspree
+       has processed the submission and redirected to their thank-you page. */
+    var iframeName = 'mc_fs_' + Date.now();
+    var iframe = document.createElement('iframe');
+    iframe.name = iframeName;
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+
+    var form = document.createElement('form');
+    form.action = FORMSPREE;
+    form.method = 'POST';
+    form.target = iframeName;
+    form.style.display = 'none';
+
+    var fields = {
+      'name':              answers['Name'] || '',
+      'email':             answers['Email'] || '',
+      'organisation_type': answers['Organisation type'] || '',
+      'group_size':        answers['Group size'] || '',
+      'main_focus':        answers['Main focus'] || '',
+      'timescale':         answers['Timescale'] || '',
+      '_subject':          'Bespoke training enquiry — ' + (answers['Name'] || 'website visitor'),
+      '_replyto':          answers['Email'] || ''
+    };
+
+    Object.keys(fields).forEach(function (key) {
+      var input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = key;
+      input.value = fields[key];
+      form.appendChild(input);
+    });
+
+    document.body.appendChild(form);
+
+    /* Timeout fallback: if iframe hasn't loaded in 10 s, show error */
+    var submitted = false;
+    var timeout = setTimeout(function () {
+      if (!submitted) { submitted = true; showError(); cleanup(); }
+    }, 10000);
+
+    iframe.addEventListener('load', function () {
+      if (submitted) return;
+      submitted = true;
+      clearTimeout(timeout);
+      showSuccess();
+      cleanup();
+    });
+
+    function cleanup() {
+      setTimeout(function () {
+        try { document.body.removeChild(form); } catch (e) {}
+        try { document.body.removeChild(iframe); } catch (e) {}
+      }, 200);
+    }
+
+    form.submit();
   }
 
   function showSuccess() {
