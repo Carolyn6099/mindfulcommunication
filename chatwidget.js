@@ -35,7 +35,7 @@
       id: 'group_size',
       msg: "How many people are you thinking of training?",
       type: 'options',
-      options: ['Up to 15', '15–30', '30 or more', 'Not sure yet'],
+      options: ['Up to 12', '12–20', 'More than 20', 'Not sure yet'],
       field: 'Group size',
       next: 'focus'
     },
@@ -526,10 +526,10 @@
     clearOptions();
 
     /* Build form data */
-    var body = new URLSearchParams();
-    body.append('_subject', 'Bespoke training enquiry — ' + (answers['Name'] || 'website visitor'));
+    var formData = new FormData();
+    formData.append('_subject', 'Bespoke training enquiry — ' + (answers['Name'] || 'website visitor'));
     Object.keys(answers).forEach(function (key) {
-      body.append(key, answers[key]);
+      formData.append(key, answers[key]);
     });
 
     /* Show sending state */
@@ -539,8 +539,8 @@
 
     fetch(FORMSPREE, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json' },
-      body: body.toString()
+      headers: { 'Accept': 'application/json' },
+      body: formData
     })
     .then(function (r) { return r.json(); })
     .then(function (data) {
