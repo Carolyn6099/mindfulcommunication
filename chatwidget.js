@@ -8,11 +8,10 @@
 (function () {
 
   /* ── Brand & config ──────────────────────────────────────── */
-  var NAVY       = '#071E43';
-  var ORANGE     = '#E8751A';
-  var CREAM      = '#FAF8F4';
-  var WEB3FORMS  = 'https://api.web3forms.com/submit';
-  var ACCESS_KEY = '16ac57a3-a5f1-47ff-967f-175e977d9313';
+  var NAVY   = '#071E43';
+  var ORANGE = '#E8751A';
+  var CREAM  = '#FAF8F4';
+  var TO_EMAIL = 'carolyn@mindfulcommunication.co.uk';
 
   /* ── Conversation steps ──────────────────────────────────── */
   var steps = [
