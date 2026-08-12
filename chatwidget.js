@@ -8,10 +8,11 @@
 (function () {
 
   /* ── Brand & config ──────────────────────────────────────── */
-  var NAVY   = '#071E43';
-  var ORANGE = '#E8751A';
-  var CREAM  = '#FAF8F4';
-  var FORMSPREE = 'https://formspree.io/f/xnjkyokb';
+  var NAVY       = '#071E43';
+  var ORANGE     = '#E8751A';
+  var CREAM      = '#FAF8F4';
+  var WEB3FORMS  = 'https://api.web3forms.com/submit';
+  var ACCESS_KEY = '16ac57a3-a5f1-47ff-967f-175e977d9313';
 
   /* ── Conversation steps ──────────────────────────────────── */
   var steps = [
@@ -520,7 +521,7 @@
     if (e.key === 'Enter') handleTextInput();
   });
 
-  /* ── Submit to Formspree ─────────────────────────────────── */
+  /* ── Submit to Web3Forms ─────────────────────────────────── */
   function submitAndFinish() {
     progFill.style.width = '100%';
     clearOptions();
@@ -530,77 +531,34 @@
       addBotMsg("Sending your details to Carolyn…");
     }, 600);
 
-    /* Submit via hidden iframe — same mechanism as the HTML form on the page,
-       so no CORS or fetch issues. The iframe load event fires when Formspree
-       has processed the submission and redirected to their thank-you page. */
-    var iframeName = 'mc_fs_' + Date.now();
-    var iframe = document.createElement('iframe');
-    iframe.name = iframeName;
-    iframe.style.display = 'none';
-    document.body.appendChild(iframe);
-
-    var form = document.createElement('form');
-    form.action = FORMSPREE;
-    form.method = 'POST';
-    form.target = iframeName;
-    form.style.display = 'none';
-
-    var fields = {
-      'name':              answers['Name'] || '',
-      'email':             answers['Email'] || '',
-      'organisation_type': answers['Organisation type'] || '',
-      'group_size':        answers['Group size'] || '',
-      'main_focus':        answers['Main focus'] || '',
-      'timescale':         answers['Timescale'] || '',
-      '_subject':          'Bespoke training enquiry — ' + (answers['Name'] || 'website visitor'),
-      '_replyto':          answers['Email'] || ''
+    var payload = {
+      access_key:        ACCESS_KEY,
+      subject:           'Bespoke training enquiry — ' + (answers['Name'] || 'website visitor'),
+      from_name:         answers['Name'] || 'Website visitor',
+      email:             answers['Email'] || '',
+      'Organisation type': answers['Organisation type'] || '',
+      'Group size':        answers['Group size'] || '',
+      'Main focus':        answers['Main focus'] || '',
+      'Timescale':         answers['Timescale'] || ''
     };
 
-    Object.keys(fields).forEach(function (key) {
-      var input = document.createElement('input');
-      input.type = 'hidden';
-      input.name = key;
-      input.value = fields[key];
-      form.appendChild(input);
-    });
-
-    document.body.appendChild(form);
-
-    var submitted = false;
-
-    /* Timeout fallback: if Formspree hasn't responded in 10 s, show error */
-    var timeout = setTimeout(function () {
-      if (!submitted) { submitted = true; showError(); cleanup(); }
-    }, 10000);
-
-    /* Two-stage load handling:
-         1st load = iframe's own blank document (fires on appendChild below)
-         2nd load = Formspree's response page — THIS is our success signal.
-       We use the 1st load as the trigger to submit, so the Formspree response
-       is always the second event our listener sees. */
-    var blankLoaded = false;
-    iframe.addEventListener('load', function () {
-      if (!blankLoaded) {
-        blankLoaded = true;
-        form.submit();          /* Submit after blank doc is ready */
-        return;
+    fetch(WEB3FORMS, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    })
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      if (data.success) {
+        showSuccess();
+      } else {
+        showError();
       }
-      /* Second load = Formspree response */
-      if (submitted) return;
-      submitted = true;
-      clearTimeout(timeout);
-      showSuccess();
-      cleanup();
-    });
-
-    function cleanup() {
-      setTimeout(function () {
-        try { document.body.removeChild(form); } catch (e) {}
-        try { document.body.removeChild(iframe); } catch (e) {}
-      }, 200);
-    }
-
-    document.body.appendChild(iframe); /* Triggers the blank-doc load */
+    })
+    .catch(function () { showError(); });
   }
 
   function showSuccess() {
