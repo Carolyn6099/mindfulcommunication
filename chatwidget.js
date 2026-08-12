@@ -8,10 +8,11 @@
 (function () {
 
   /* ── Brand & config ──────────────────────────────────────── */
-  var NAVY   = '#071E43';
-  var ORANGE = '#E8751A';
-  var CREAM  = '#FAF8F4';
-  var TO_EMAIL = 'carolyn@mindfulcommunication.co.uk';
+  var NAVY       = '#071E43';
+  var ORANGE     = '#E8751A';
+  var CREAM      = '#FAF8F4';
+  var WEB3FORMS  = 'https://api.web3forms.com/submit';
+  var ACCESS_KEY = '16ac57a3-a5f1-47ff-967f-175e977d9313';
 
   /* ── Conversation steps ──────────────────────────────────── */
   var steps = [
@@ -538,47 +539,64 @@
     if (e.key === 'Enter') handleTextInput();
   });
 
-  /* ── Build mailto link & finish ─────────────────────────── */
+  /* ── Submit to Web3Forms ─────────────────────────────────── */
   function submitAndFinish() {
     progFill.style.width = '100%';
     clearOptions();
     inputArea.classList.remove('mc-visible');
 
-    var subject = 'Bespoke NVC training enquiry — ' + (answers['Name'] || 'website visitor');
-    var body =
-      'Hi Carolyn,\n\n' +
-      'I\'d like to enquire about bespoke NVC training for my organisation.\n\n' +
-      'Name: '              + (answers['Name']              || '') + '\n' +
-      'Organisation type: ' + (answers['Organisation type'] || '') + '\n' +
-      'Group size: '        + (answers['Group size']        || '') + '\n' +
-      'Main focus: '        + (answers['Main focus']        || '') + '\n' +
-      'Timescale: '         + (answers['Timescale']         || '') + '\n\n' +
-      'Please get in touch to discuss further.\n\n' +
-      'Best wishes,\n' + (answers['Name'] || '');
-
-    var mailtoUrl = 'mailto:' + TO_EMAIL +
-      '?subject=' + encodeURIComponent(subject) +
-      '&body='    + encodeURIComponent(body);
-
     showTyping(function () {
-      showSuccess(mailtoUrl);
-    }, 700);
+      addBotMsg("Sending your details to Carolyn…");
+    }, 600);
+
+    var payload = {
+      access_key:          ACCESS_KEY,
+      subject:             'Bespoke training enquiry — ' + (answers['Name'] || 'website visitor'),
+      from_name:           answers['Name'] || 'Website visitor',
+      email:               answers['Email'] || '',
+      'Organisation type': answers['Organisation type'] || '',
+      'Group size':        answers['Group size'] || '',
+      'Main focus':        answers['Main focus'] || '',
+      'Timescale':         answers['Timescale'] || ''
+    };
+
+    fetch(WEB3FORMS, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    })
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      if (data.success) {
+        showSuccess();
+      } else {
+        showError();
+      }
+    })
+    .catch(function () { showError(); });
   }
 
-  function showSuccess(mailtoUrl) {
+  function showSuccess() {
     msgs.innerHTML = '';
     optArea.innerHTML = '';
     var name = userName ? ', ' + userName : '';
-    msgs.innerHTML =
-      '<div class="mc-success-msg">' +
-        '<div class="mc-tick">🌿</div>' +
-        '<p>Thank you' + name + '! One last step — click the button below. ' +
-        'Your email app will open with everything pre-filled. ' +
-        'Just hit <strong>Send</strong> and Carolyn will be in touch within two working days.</p>' +
-        '<a href="' + mailtoUrl + '" class="mc-mailto-btn">Send your enquiry to Carolyn &rarr;</a>' +
-        '<p class="mc-mailto-note">Or email directly: carolyn@mindfulcommunication.co.uk</p>' +
-      '</div>';
+    msgs.innerHTML = `
+      <div class="mc-success-msg">
+        <div class="mc-tick">🌿</div>
+        <p>Thank you${name}!<br><br>
+        <strong>Carolyn will be in touch within two working days</strong> to find out more about your organisation and discuss how she can help.<br><br>
+        In the meantime, feel free to email her directly at carolyn@mindfulcommunication.co.uk</p>
+      </div>
+    `;
     progFill.style.width = '100%';
+  }
+
+  function showError() {
+    clearOptions();
+    addBotMsg("Sorry, something went wrong sending your message. Please email Carolyn directly at carolyn@mindfulcommunication.co.uk — she'd love to hear from you!");
   }
 
   /* ── Auto-nudge after 20 seconds ─────────────────────────── */
