@@ -566,13 +566,26 @@
 
     document.body.appendChild(form);
 
-    /* Timeout fallback: if iframe hasn't loaded in 10 s, show error */
     var submitted = false;
+
+    /* Timeout fallback: if Formspree hasn't responded in 10 s, show error */
     var timeout = setTimeout(function () {
       if (!submitted) { submitted = true; showError(); cleanup(); }
     }, 10000);
 
+    /* Two-stage load handling:
+         1st load = iframe's own blank document (fires on appendChild below)
+         2nd load = Formspree's response page — THIS is our success signal.
+       We use the 1st load as the trigger to submit, so the Formspree response
+       is always the second event our listener sees. */
+    var blankLoaded = false;
     iframe.addEventListener('load', function () {
+      if (!blankLoaded) {
+        blankLoaded = true;
+        form.submit();          /* Submit after blank doc is ready */
+        return;
+      }
+      /* Second load = Formspree response */
       if (submitted) return;
       submitted = true;
       clearTimeout(timeout);
@@ -587,7 +600,7 @@
       }, 200);
     }
 
-    form.submit();
+    document.body.appendChild(iframe); /* Triggers the blank-doc load */
   }
 
   function showSuccess() {
