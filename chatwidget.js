@@ -525,11 +525,13 @@
     progFill.style.width = '100%';
     clearOptions();
 
-    /* Build form data */
-    var formData = new FormData();
-    formData.append('_subject', 'Bespoke training enquiry — ' + (answers['Name'] || 'website visitor'));
+    /* Build JSON payload */
+    var payload = {
+      '_subject': 'Bespoke training enquiry — ' + (answers['Name'] || 'website visitor'),
+      '_replyto': answers['Email'] || ''
+    };
     Object.keys(answers).forEach(function (key) {
-      formData.append(key, answers[key]);
+      payload[key] = answers[key];
     });
 
     /* Show sending state */
@@ -539,12 +541,18 @@
 
     fetch(FORMSPREE, {
       method: 'POST',
-      headers: { 'Accept': 'application/json' },
-      body: formData
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(payload)
     })
-    .then(function (r) { return r.json(); })
+    .then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    })
     .then(function (data) {
-      if (data.ok || data.next) {
+      if (data.ok) {
         showSuccess();
       } else {
         showError();
