@@ -1,0 +1,50 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Mindful Communication//Joining details//EN
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:october-online-foundations-2027-1@mindfulcommunication.co.uk
+DTSTAMP:20261103T190000Z
+DTSTART:20271019T173000Z
+DTEND:20271019T200000Z
+SUMMARY:NVC Level 1 Foundations (online) – session 1
+LOCATION:https://us02web.zoom.us/j/86593184070
+DESCRIPTION:Joining details: https://www.mindfulcommunication.co.uk/joining-details/october-online-foundations-2027/\nZoom: https://us02web.zoom.us/j/86593184070
+END:VEVENT
+BEGIN:VEVENT
+UID:october-online-foundations-2027-2@mindfulcommunication.co.uk
+DTSTAMP:20261103T190000Z
+DTSTART:20271026T173000Z
+DTEND:20271026T200000Z
+SUMMARY:NVC Level 1 Foundations (online) – session 2
+LOCATION:https://us02web.zoom.us/j/86593184070
+DESCRIPTION:Joining details: https://www.mindfulcommunication.co.uk/joining-details/october-online-foundations-2027/\nZoom: https://us02web.zoom.us/j/86593184070
+END:VEVENT
+BEGIN:VEVENT
+UID:october-online-foundations-2027-3@mindfulcommunication.co.uk
+DTSTAMP:20261103T190000Z
+DTSTART:20271102T183000Z
+DTEND:20271102T210000Z
+SUMMARY:NVC Level 1 Foundations (online) – session 3
+LOCATION:https://us02web.zoom.us/j/86593184070
+DESCRIPTION:Joining details: https://www.mindfulcommunication.co.uk/joining-details/october-online-foundations-2027/\nZoom: https://us02web.zoom.us/j/86593184070
+END:VEVENT
+BEGIN:VEVENT
+UID:october-online-foundations-2027-4@mindfulcommunication.co.uk
+DTSTAMP:20261103T190000Z
+DTSTART:20271109T183000Z
+DTEND:20271109T210000Z
+SUMMARY:NVC Level 1 Foundations (online) – session 4
+LOCATION:https://us02web.zoom.us/j/86593184070
+DESCRIPTION:Joining details: https://www.mindfulcommunication.co.uk/joining-details/october-online-foundations-2027/\nZoom: https://us02web.zoom.us/j/86593184070
+END:VEVENT
+BEGIN:VEVENT
+UID:october-online-foundations-2027-5@mindfulcommunication.co.uk
+DTSTAMP:20261103T190000Z
+DTSTART:20271116T183000Z
+DTEND:20271116T210000Z
+SUMMARY:NVC Level 1 Foundations (online) – session 5
+LOCATION:https://us02web.zoom.us/j/86593184070
+DESCRIPTION:Joining details: https://www.mindfulcommunication.co.uk/joining-details/october-online-foundations-2027/\nZoom: https://us02web.zoom.us/j/86593184070
+END:VEVENT
+END:VCALENDAR

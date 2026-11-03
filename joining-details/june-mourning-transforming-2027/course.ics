@@ -1,0 +1,23 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Mindful Communication//Joining details//EN
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:june-mourning-transforming-2027-1@mindfulcommunication.co.uk
+DTSTAMP:20261103T190000Z
+DTSTART:20270612T083000Z
+DTEND:20270612T121500Z
+SUMMARY:NVC Level 2 Intermediate: A Guide to Mourning & Transforming (online)
+LOCATION:https://us02web.zoom.us/j/83669981615
+DESCRIPTION:Joining details: https://www.mindfulcommunication.co.uk/joining-details/june-mourning-transforming-2027/\nZoom: https://us02web.zoom.us/j/83669981615
+END:VEVENT
+BEGIN:VEVENT
+UID:june-mourning-transforming-2027-2@mindfulcommunication.co.uk
+DTSTAMP:20261103T190000Z
+DTSTART:20270613T083000Z
+DTEND:20270613T121500Z
+SUMMARY:NVC Level 2 Intermediate: A Guide to Mourning & Transforming (online)
+LOCATION:https://us02web.zoom.us/j/83669981615
+DESCRIPTION:Joining details: https://www.mindfulcommunication.co.uk/joining-details/june-mourning-transforming-2027/\nZoom: https://us02web.zoom.us/j/83669981615
+END:VEVENT
+END:VCALENDAR

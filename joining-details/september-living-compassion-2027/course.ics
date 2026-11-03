@@ -1,0 +1,23 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Mindful Communication//Joining details//EN
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:september-living-compassion-2027-1@mindfulcommunication.co.uk
+DTSTAMP:20261103T190000Z
+DTSTART:20270918T083000Z
+DTEND:20270918T121500Z
+SUMMARY:NVC Level 2 Intermediate: Living Compassion (online)
+LOCATION:https://us02web.zoom.us/j/83669981615
+DESCRIPTION:Joining details: https://www.mindfulcommunication.co.uk/joining-details/september-living-compassion-2027/\nZoom: https://us02web.zoom.us/j/83669981615
+END:VEVENT
+BEGIN:VEVENT
+UID:september-living-compassion-2027-2@mindfulcommunication.co.uk
+DTSTAMP:20261103T190000Z
+DTSTART:20270919T083000Z
+DTEND:20270919T121500Z
+SUMMARY:NVC Level 2 Intermediate: Living Compassion (online)
+LOCATION:https://us02web.zoom.us/j/83669981615
+DESCRIPTION:Joining details: https://www.mindfulcommunication.co.uk/joining-details/september-living-compassion-2027/\nZoom: https://us02web.zoom.us/j/83669981615
+END:VEVENT
+END:VCALENDAR

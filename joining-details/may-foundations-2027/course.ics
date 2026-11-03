@@ -1,0 +1,23 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Mindful Communication//Joining details//EN
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:may-foundations-2027-1@mindfulcommunication.co.uk
+DTSTAMP:20261103T193000Z
+DTSTART:20270522T090000Z
+DTEND:20270522T161500Z
+SUMMARY:NVC Level 1 Foundations (in person)
+LOCATION:London (venue to be confirmed)
+DESCRIPTION:Joining details: https://www.mindfulcommunication.co.uk/joining-details/may-foundations-2027/
+END:VEVENT
+BEGIN:VEVENT
+UID:may-foundations-2027-2@mindfulcommunication.co.uk
+DTSTAMP:20261103T193000Z
+DTSTART:20270523T090000Z
+DTEND:20270523T161500Z
+SUMMARY:NVC Level 1 Foundations (in person)
+LOCATION:London (venue to be confirmed)
+DESCRIPTION:Joining details: https://www.mindfulcommunication.co.uk/joining-details/may-foundations-2027/
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,50 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Mindful Communication//Joining details//EN
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:february-online-foundations-2027-1@mindfulcommunication.co.uk
+DTSTAMP:20261103T190000Z
+DTSTART:20270223T183000Z
+DTEND:20270223T210000Z
+SUMMARY:NVC Level 1 Foundations (online) – session 1
+LOCATION:https://us02web.zoom.us/j/86593184070
+DESCRIPTION:Joining details: https://www.mindfulcommunication.co.uk/joining-details/february-online-foundations-2027/\nZoom: https://us02web.zoom.us/j/86593184070
+END:VEVENT
+BEGIN:VEVENT
+UID:february-online-foundations-2027-2@mindfulcommunication.co.uk
+DTSTAMP:20261103T190000Z
+DTSTART:20270302T183000Z
+DTEND:20270302T210000Z
+SUMMARY:NVC Level 1 Foundations (online) – session 2
+LOCATION:https://us02web.zoom.us/j/86593184070
+DESCRIPTION:Joining details: https://www.mindfulcommunication.co.uk/joining-details/february-online-foundations-2027/\nZoom: https://us02web.zoom.us/j/86593184070
+END:VEVENT
+BEGIN:VEVENT
+UID:february-online-foundations-2027-3@mindfulcommunication.co.uk
+DTSTAMP:20261103T190000Z
+DTSTART:20270309T183000Z
+DTEND:20270309T210000Z
+SUMMARY:NVC Level 1 Foundations (online) – session 3
+LOCATION:https://us02web.zoom.us/j/86593184070
+DESCRIPTION:Joining details: https://www.mindfulcommunication.co.uk/joining-details/february-online-foundations-2027/\nZoom: https://us02web.zoom.us/j/86593184070
+END:VEVENT
+BEGIN:VEVENT
+UID:february-online-foundations-2027-4@mindfulcommunication.co.uk
+DTSTAMP:20261103T190000Z
+DTSTART:20270316T183000Z
+DTEND:20270316T210000Z
+SUMMARY:NVC Level 1 Foundations (online) – session 4
+LOCATION:https://us02web.zoom.us/j/86593184070
+DESCRIPTION:Joining details: https://www.mindfulcommunication.co.uk/joining-details/february-online-foundations-2027/\nZoom: https://us02web.zoom.us/j/86593184070
+END:VEVENT
+BEGIN:VEVENT
+UID:february-online-foundations-2027-5@mindfulcommunication.co.uk
+DTSTAMP:20261103T190000Z
+DTSTART:20270323T183000Z
+DTEND:20270323T210000Z
+SUMMARY:NVC Level 1 Foundations (online) – session 5
+LOCATION:https://us02web.zoom.us/j/86593184070
+DESCRIPTION:Joining details: https://www.mindfulcommunication.co.uk/joining-details/february-online-foundations-2027/\nZoom: https://us02web.zoom.us/j/86593184070
+END:VEVENT
+END:VCALENDAR

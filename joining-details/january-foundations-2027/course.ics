@@ -1,0 +1,23 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Mindful Communication//Joining details//EN
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:january-foundations-2027-1@mindfulcommunication.co.uk
+DTSTAMP:20261103T190000Z
+DTSTART:20270123T100000Z
+DTEND:20270123T171500Z
+SUMMARY:NVC Level 1 Foundations (in person)
+LOCATION:Ground Floor\, 55 Leroy St\, London SE1 4SN
+DESCRIPTION:Joining details: https://www.mindfulcommunication.co.uk/joining-details/january-foundations-2027/
+END:VEVENT
+BEGIN:VEVENT
+UID:january-foundations-2027-2@mindfulcommunication.co.uk
+DTSTAMP:20261103T190000Z
+DTSTART:20270124T100000Z
+DTEND:20270124T171500Z
+SUMMARY:NVC Level 1 Foundations (in person)
+LOCATION:Ground Floor\, 55 Leroy St\, London SE1 4SN
+DESCRIPTION:Joining details: https://www.mindfulcommunication.co.uk/joining-details/january-foundations-2027/
+END:VEVENT
+END:VCALENDAR
